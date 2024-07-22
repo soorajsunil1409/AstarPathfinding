@@ -192,6 +192,8 @@ def main(win, width):
     ROWS = 50
     grid = make_grid(ROWS, width)
 
+    clock = pygame.time.Clock()
+
     start = None
     end = None
 
@@ -234,7 +236,7 @@ def main(win, width):
                     end = None
 
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE and not started:
+                if event.key == pygame.K_SPACE:
                     for row in grid:
                         for spot in row:
                             spot.update_neighbors(grid)
@@ -245,6 +247,9 @@ def main(win, width):
                     start = None
                     end = None
                     grid = make_grid(ROWS, width)
+
+            clock.tick(100)
+            pygame.display.flip()
 
     pygame.quit()
 
